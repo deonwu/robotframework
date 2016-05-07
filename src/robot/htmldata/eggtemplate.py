@@ -12,10 +12,19 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-try:
-    from .jartemplate import HtmlTemplate
-except ImportError:
-    try:
-        from .eggtemplate import HtmlTemplate
-    except ImportError:
-        from .normaltemplate import HtmlTemplate
+import os
+from os.path import abspath, dirname, join, normpath
+
+import pkg_resources
+
+class HtmlTemplate(object):
+
+    def __init__(self, filename):
+        #print("f:%s" % filename)
+        filename = filename.replace("rebot/../", "")
+        self._path = filename
+
+    def __iter__(self):
+        data = pkg_resources.resource_string("robot.htmldata", self._path)  
+        for line in data.split("\n"):
+            yield line.rstrip()
