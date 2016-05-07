@@ -29,7 +29,7 @@ function setTitle(suiteName, type) {
 }
 
 function addHeader() {
-    $.tmpl('<h1>${title}</h1>' +
+    $.tmpl('<span>${title}</span>' +
            '<div id="generated">' +
              '<span>Generated<br>${generated}</span><br>' +
              '<span id="generated-ago">${ago} ago</span>' +

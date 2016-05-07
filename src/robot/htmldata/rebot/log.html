@@ -48,7 +48,7 @@ $(document).ready(function() {
         return;
     }
     initLayout(topsuite.name, 'Log');
-    addStatistics();
+    //addStatistics();
     addErrors();
     addTestExecutionLog(topsuite);
     addLogLevelSelector(window.settings['minLevel'], window.settings['defaultLevel']);
@@ -128,7 +128,7 @@ function makeElementVisible(id) {
 }
 
 function addTestExecutionLog(main) {
-    $('body').append($('<h2>Test Execution Log</h2>'),
+    $('body').append($('<h2>ECHO Log view</h2>'),
                      $.tmpl('suiteTemplate', main));
 }
 </script>
@@ -198,7 +198,7 @@ function addTestExecutionLog(main) {
   <div id="${id}" class="suite">
     <div class="element-header closed" onclick="toggleSuite('${id}')">
       <div class="element-header-left" title="{{html fullName}}">
-        <span class="elapsed" title="Elapsed time">${times.elapsedTime}</span>
+        <span class="elapsed" title="Elapsed time"></span>
         <span class="label ${status.toLowerCase()}">SUITE</span>
         <span class="name">{{html name}}</span>
       </div>
@@ -211,10 +211,6 @@ function addTestExecutionLog(main) {
     </div>
     <div class="children">
       <table class="metadata">
-        <tr>
-          <th>Full Name:</th>
-          <td>{{html fullName}}</td>
-        </tr>
         {{if doc()}}
         <tr>
           <th>Documentation:</th>
@@ -237,14 +233,6 @@ function addTestExecutionLog(main) {
           {{/if}}
         </tr>
         {{/if}}
-        <tr>
-          <th>Start / End / Elapsed:</th>
-          <td>${times.startTime} / ${times.endTime} / ${times.elapsedTime}</td>
-        </tr>
-        <tr>
-          <th>Status:</th>
-          <td>{{tmpl($data) 'suiteStatusMessageTemplate'}}</td>
-        </tr>
         {{if message()}}
         <tr>
           <th>Message:</th>
@@ -261,7 +249,7 @@ function addTestExecutionLog(main) {
     <div class="element-header closed" onclick="toggleTest('${id}')">
       <div class="element-header-left" title="{{html fullName}}">
         <span class="elapsed" title="Elapsed time">${times.elapsedTime}</span>
-        <span class="label ${status.toLowerCase()}">TEST</span>
+        <span class="label ${status.toLowerCase()}">SERVICE</span>
         <span class="name">{{html name}}</span>
         {{if !isCritical}}(non-critical){{/if}}
       </div>
@@ -274,10 +262,6 @@ function addTestExecutionLog(main) {
     </div>
     <div class="children">
       <table class="metadata">
-        <tr>
-          <th>Full Name:</th>
-          <td>{{html fullName}}</td>
-        </tr>
         {{if doc()}}
         <tr>
           <th>Documentation:</th>
@@ -320,7 +304,7 @@ function addTestExecutionLog(main) {
     <div class="element-header closed" onclick="toggleKeyword('${id}')">
       <div class="element-header-left" title="{{html name}}">
         <span class="elapsed" title="Elapsed time">${times.elapsedTime}</span>
-        <span class="label keyword ${status.toLowerCase()}">${type}</span>
+        <span class="label keyword ${status.toLowerCase()}">CALL</span>
         <span>{{html assign}}</span>
         <span class="name"><span class="parent-name">{{html libname}}{{if libname}} . {{/if}}</span>{{html name}}</span>
         <span class="arg">{{html arguments}}</span>
